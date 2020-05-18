@@ -3,24 +3,31 @@ package br.pro.hashi.ensino.desagil.aps.model;
 import java.awt.*;
 
 public class Light implements Receiver {
-    private Color color;
+    private Color colorOn;
+    private Color colorOff;
     private Emitter emitter;
 
-    public Light(int r, int g, int b) {
-        color = new Color(r, g, b);
+    public Light(int r, int g, int b, int r2, int g2, int b2) {
+        colorOn = new Color(r, g, b);
+        colorOff = new Color(r2, g2, b2);
         emitter = null;
     }
 
     public Color getColor() {
         if (emitter != null && emitter.read()) {
-            return color;
+            return colorOn;
+        } else {
+            return colorOff;
         }
-        return Color.BLACK;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColorOn(Color color) {
+        this.colorOn = color;
     }
+    public void setColorOff(Color color) {
+        this.colorOff = color;
+    }
+
 
     @Override
     public void connect(int inputIndex, Emitter emitter) {

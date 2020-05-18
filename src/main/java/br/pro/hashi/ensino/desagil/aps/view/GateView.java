@@ -22,6 +22,8 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
     private final Switch signal_B;
     private final Image image;
     private final Light light;
+    private Color colorOn;
+    private Color colorOff;
     private Color color;
 
     public GateView(Gate gate) {
@@ -40,7 +42,7 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
             add(A_receiverBox, 28, 30 + 15, 15, 15);
         }
 
-        this.light = new Light(255, 0, 0);
+        this.light = new Light(255, 0, 0, 0, 0, 0);
 
         String name = gate.toString() + ".png";
         System.out.println(name);
@@ -74,7 +76,6 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         light.connect(0, gate);
 
 
-        color = light.getColor();
         repaint();
 
 
@@ -89,10 +90,17 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
     public void mouseClicked(MouseEvent event) {
         int x = event.getX();
         int y = event.getY();
-        if (light.getColor() != Color.BLACK) {
+        if (gate.read()) {
             if ((x - 212.5) * (x - 212.5) + (y - (70)) * (y - 70) < 12.5 * 12.5) {
-                color = JColorChooser.showDialog(this, null, color);
-                light.setColor(color);
+                colorOn = JColorChooser.showDialog(this, null, colorOn);
+                light.setColorOn(colorOn);
+                repaint();
+            }
+        }
+        else {
+            if ((x - 212.5) * (x - 212.5) + (y - (70)) * (y - 70) < 12.5 * 12.5) {
+                colorOff = JColorChooser.showDialog(this, null, colorOff);
+                light.setColorOff(colorOff);
                 repaint();
             }
         }
@@ -126,7 +134,7 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         // Desenha a imagem, passando sua posição e seu tamanho.
         g.drawImage(image, 0, 0, 221, 150, this);
         // Desenha um quadrado cheio.
-        g.setColor(color);
+        g.setColor(light.getColor());
 
         g.fillOval(200, 60, 25, 25);
         //g.fillRect(190, 180, 25, 25);
