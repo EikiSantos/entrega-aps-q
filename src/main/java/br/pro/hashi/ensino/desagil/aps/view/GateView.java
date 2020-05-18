@@ -22,8 +22,7 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
     private final Switch signal_B;
     private final Image image;
     private final Light light;
-    private Color colorOn;
-    private Color colorOff;
+    private Color offColor;
     private Color color;
 
     public GateView(Gate gate) {
@@ -92,15 +91,15 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         int y = event.getY();
         if (gate.read()) {
             if ((x - 212.5) * (x - 212.5) + (y - (70)) * (y - 70) < 12.5 * 12.5) {
-                colorOn = JColorChooser.showDialog(this, null, colorOn);
-                light.setColorOn(colorOn);
+                color= JColorChooser.showDialog(this, null, color);
+                light.setColor(color);
                 repaint();
             }
         }
         else {
             if ((x - 212.5) * (x - 212.5) + (y - (70)) * (y - 70) < 12.5 * 12.5) {
-                colorOff = JColorChooser.showDialog(this, null, colorOff);
-                light.setColorOff(colorOff);
+                offColor = JColorChooser.showDialog(this, null, offColor);
+                light.setOffColor(offColor);
                 repaint();
             }
         }
