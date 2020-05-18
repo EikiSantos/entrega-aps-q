@@ -87,16 +87,15 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
     public void mouseClicked(MouseEvent event) {
         int x = event.getX();
         int y = event.getY();
-        if ((x - 212.5) * (x - 212.5) + (y - (70)) * (y - 70) < 12.5 * 12.5)  {
+        if ((x - 212.5) * (x - 212.5) + (y - (70)) * (y - 70) < 12.5 * 12.5) {
             if (gate.read()) {
                 light.setColor(JColorChooser.showDialog(this, null, light.getColor()));
                 repaint();
-            }
-            else {
+            } else {
                 light.setOffColor(JColorChooser.showDialog(this, null, light.getColor()));
                 repaint();
-                }
             }
+        }
     }
 
     @Override
