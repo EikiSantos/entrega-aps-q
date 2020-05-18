@@ -33,10 +33,10 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         A_receiverBox = new JCheckBox();
         B_receiverBox = new JCheckBox();
 
-        add(A_receiverBox, 28, 65, 15, 15);
+        add(A_receiverBox, 28, 65);
         if (gate.getInputSize() > 1) {
-            add(B_receiverBox, 28, 80, 15, 15);
-            add(A_receiverBox, 28, 30 + 15, 15, 15);
+            add(B_receiverBox, 28, 80);
+            add(A_receiverBox, 28, 30 + 15);
         }
 
         this.light = new Light(255, 0, 0, 0, 0, 0);
