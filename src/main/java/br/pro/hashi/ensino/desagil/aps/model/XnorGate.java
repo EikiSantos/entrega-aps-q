@@ -4,15 +4,14 @@ public class XnorGate extends Gate {
     private final NandGate nand1;
     private final NandGate nand2;
     private final NandGate nand3;
-    private final NandGate nand4;
     private final NandGate nand5;
 
-    public XnorGate(){
+    public XnorGate() {
         super("XNOR", 2);
         nand1 = new NandGate();
         nand2 = new NandGate();
         nand3 = new NandGate();
-        nand4 = new NandGate();
+        NandGate nand4 = new NandGate();
         nand5 = new NandGate();
         nand2.connect(1, nand1);
         nand3.connect(0, nand1);

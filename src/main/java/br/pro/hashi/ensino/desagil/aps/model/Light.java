@@ -24,6 +24,7 @@ public class Light implements Receiver {
     public void setColor(Color color) {
         this.color = color;
     }
+
     public void setOffColor(Color color) {
         this.offColor = color;
     }
